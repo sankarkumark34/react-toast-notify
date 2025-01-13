@@ -7,11 +7,6 @@ const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
   const theme = toastTheme[type];
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
-  
   return (
     <motion.div
       initial={{ opacity: 0, y: -50 }}
@@ -27,7 +22,7 @@ const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
         hover:shadow-lg ${theme.hover}
       `}
     >
-      {/* Enhanced loading bar animation */}
+      {/* Loading animation */}
       {isLoading && (
         <div className="absolute bottom-0 left-0 w-full h-1 overflow-hidden">
           <motion.div
@@ -47,17 +42,17 @@ const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
         </div>
       )}
 
+      {/* Icon */}
       <span className="text-xl flex-shrink-0" role="img" aria-label={type}>
         {theme.icon}
       </span>
-      <div className="flex flex-col flex-1">
-        <h4 className={`font-semibold text-base ${theme.titleGradient}`}>
-          {type.charAt(0).toUpperCase() + type.slice(1)}
-        </h4>
-        <p className="text-sm leading-relaxed text-gray-600 font-normal">
-          {message}
-        </p>
-      </div>
+
+      {/* Message only - removed title */}
+      <p className="text-sm leading-relaxed text-gray-600 font-medium flex-1">
+        {message}
+      </p>
+
+      {/* Close button */}
       <button 
         onClick={onClose}
         className="ml-auto text-gray-500 hover:text-gray-700 transition-colors flex-shrink-0"
