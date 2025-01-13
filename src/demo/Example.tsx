@@ -7,31 +7,55 @@ export const Example = () => {
   const { removeToast } = useToastContext();
 
   return (
-    <div className="flex flex-col gap-4 p-8">
+    <div className="flex flex-col gap-4 p-8 max-w-md mx-auto">
       <button 
         onClick={() => toast.success('Success message!')}
-        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+        className="w-full bg-gradient-to-r from-green-400 to-green-500 
+          hover:from-green-500 hover:to-green-600 
+          text-white font-medium py-3 px-6 rounded-lg
+          transform transition-all duration-200 
+          hover:scale-[1.02] hover:shadow-lg
+          active:scale-[0.98]"
       >
         Show Success Toast
       </button>
+
       <button 
         onClick={() => toast.error('Error message!')}
-        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+        className="w-full bg-gradient-to-r from-red-400 to-red-500 
+          hover:from-red-500 hover:to-red-600 
+          text-white font-medium py-3 px-6 rounded-lg
+          transform transition-all duration-200 
+          hover:scale-[1.02] hover:shadow-lg
+          active:scale-[0.98]"
       >
         Show Error Toast
       </button>
+
       <button 
         onClick={() => toast.warning('Warning message!')}
-        className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+        className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 
+          hover:from-yellow-500 hover:to-yellow-600 
+          text-white font-medium py-3 px-6 rounded-lg
+          transform transition-all duration-200 
+          hover:scale-[1.02] hover:shadow-lg
+          active:scale-[0.98]"
       >
         Show Warning Toast
       </button>
+
       <button 
         onClick={() => toast.info('Info message!')}
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        className="w-full bg-gradient-to-r from-blue-400 to-blue-500 
+          hover:from-blue-500 hover:to-blue-600 
+          text-white font-medium py-3 px-6 rounded-lg
+          transform transition-all duration-200 
+          hover:scale-[1.02] hover:shadow-lg
+          active:scale-[0.98]"
       >
         Show Info Toast
       </button>
+
       <ToastContainer 
         toasts={toast.toasts} 
         position="top-right" 
