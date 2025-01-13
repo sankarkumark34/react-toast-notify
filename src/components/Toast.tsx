@@ -1,11 +1,18 @@
-import { memo } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { ToastProps } from '../types';
 import { toastTheme } from '../utils/theme';
 import { motion } from 'framer-motion'; 
 
 const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
   const theme = toastTheme[type];
+  const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    // Loading animation for 500ms
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: -50 }}
@@ -13,6 +20,7 @@ const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
       exit={{ opacity: 0, y: -50 }}
       className={`
         ${theme.background}
+        relative overflow-hidden
         transform transition-all duration-300 ease-out
         flex items-center gap-3 px-4 py-3
         rounded-md shadow-md
@@ -20,6 +28,19 @@ const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
         hover:shadow-lg ${theme.hover}
       `}
     >
+      {/* Loading bar animation */}
+      {isLoading && (
+        <motion.div
+          initial={{ width: "0%" }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className={`
+            absolute top-0 left-0 h-1
+            ${theme.loadingBar}
+          `}
+        />
+      )}
+
       <span className="text-lg">{theme.icon}</span>
       <div className="flex flex-col flex-1">
         <h4 className={`font-semibold text-base ${theme.titleGradient}`}>
