@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import { ToastProps } from '../types';
 import { toastTheme } from '../utils/theme';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion'; 
 
 const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
   const theme = toastTheme[type];
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 100 }}
