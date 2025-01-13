@@ -1,5 +1,5 @@
 {
-  "name": "react-toast-notification",
+  "name": "@sankar-kumar/react-toast-notify",
   "version": "1.0.0",
   "description": "toast notification library for React",
   "main": "dist/index.js",
@@ -28,11 +28,11 @@
     "@types/react": "^19.0.6",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^6.0.7",
-    "vite-plugin-dts": "^4.5.0"
+    "vite": "^6.0.7"
   },
   "dependencies": {
     "framer-motion": "^11.17.0",
     "nanoid": "^5.0.9"
   }
 }
+
