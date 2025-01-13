@@ -1,12 +1,16 @@
 import { memo } from 'react';
 import { ToastProps } from '../types';
 import { toastTheme } from '../utils/theme';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
   const theme = toastTheme[type];
   
   return (
-    <div 
+    <motion.div
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 100 }}
       className={`
         ${theme.background}
         transform transition-all duration-300 ease-out
@@ -24,7 +28,7 @@ const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
       >
         ✕
       </button>
-    </div>
+    </motion.div>
   );
 });
 

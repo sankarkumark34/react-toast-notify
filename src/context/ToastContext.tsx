@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, ReactNode } from 'react';
+import { createContext, useContext, useReducer, ReactNode, useMemo } from 'react';
 import { Toast, ToastOptions } from '../types';
 import { nanoid } from 'nanoid';
 
@@ -36,6 +36,14 @@ const toastReducer = (state: ToastState, action: ToastAction): ToastState => {
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(toastReducer, { toasts: [] });
 
+  const value = useMemo(() => ({
+    state,
+    addToast,
+    removeToast
+  }), [state]);
+
+  const MAX_TOASTS = 5;
+
   const addToast = (options: ToastOptions) => {
     const toast: Toast = {
       id: nanoid(),
@@ -43,8 +51,17 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
       createdAt: Date.now()
     };
 
-    dispatch({ type: 'ADD_TOAST', payload: toast });
+    dispatch({ 
+      type: 'ADD_TOAST', 
+      payload: toast 
+    });
 
+    // Remove oldest toast if limit reached
+    if (state.toasts.length >= MAX_TOASTS) {
+      removeToast(state.toasts[0].id);
+    }
+
+    // Auto remove
     if (options.duration !== Infinity) {
       setTimeout(() => {
         removeToast(toast.id);
@@ -57,7 +74,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <ToastContext.Provider value={{ state, addToast, removeToast }}>
+    <ToastContext.Provider value={value}>
       {children}
     </ToastContext.Provider>
   );
