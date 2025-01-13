@@ -12,7 +12,7 @@ const positionStyles: Record<Position, string> = {
   'bottom-center': 'bottom-4 left-1/2 -translate-x-1/2'
 };
 
-const ToastContainer = memo(({ toasts, position = 'top-right' }: ToastContainerProps) => {
+const ToastContainer = memo(({ toasts, position = 'top-right', removeToast }: ToastContainerProps) => {
   return createPortal(
     <div 
       className={`
@@ -22,7 +22,11 @@ const ToastContainer = memo(({ toasts, position = 'top-right' }: ToastContainerP
       `}
     >
       {toasts.map((toast) => (
-        <Toast key={toast.id} {...toast} />
+        <Toast 
+          key={toast.id} 
+          {...toast} 
+          onClose={() => removeToast(toast.id)} 
+        />
       ))}
     </div>,
     document.body

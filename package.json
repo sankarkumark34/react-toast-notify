@@ -19,6 +19,8 @@
   "author": "Your Name",
   "license": "MIT",
   "devDependencies": {
+    "@types/react": "^19.0.6",
+    "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.0",

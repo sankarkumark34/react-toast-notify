@@ -20,4 +20,5 @@ export interface ToastProps extends Toast {
 export interface ToastContainerProps {
   toasts: Toast[];
   position?: Position;
+  removeToast: (id: string) => void;
 }
