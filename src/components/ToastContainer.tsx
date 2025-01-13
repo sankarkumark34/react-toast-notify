@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import Toast from './Toast';
 import { ToastContainerProps, Position } from '../types';
@@ -13,19 +13,17 @@ const positionStyles: Record<Position, string> = {
 };
 
 const ToastContainer = memo(({ toasts, position = 'top-right', removeToast }: ToastContainerProps) => {
+  const handleClose = useCallback((id: string) => {
+    removeToast(id);
+  }, [removeToast]);
+
   return createPortal(
-    <div 
-      className={`
-        fixed z-50 
-        flex flex-col gap-2
-        ${positionStyles[position]}
-      `}
-    >
+    <div className={`fixed z-50 flex flex-col gap-2 ${positionStyles[position]}`}>
       {toasts.map((toast) => (
         <Toast 
           key={toast.id} 
           {...toast} 
-          onClose={() => removeToast(toast.id)} 
+          onClose={() => handleClose(toast.id)} 
         />
       ))}
     </div>,

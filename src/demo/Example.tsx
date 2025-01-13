@@ -1,8 +1,10 @@
 import { useToast } from '../hooks/useToast';
 import ToastContainer from '../components/ToastContainer';
+import { useToastContext } from '../context/ToastContext';
 
 export const Example = () => {
   const toast = useToast();
+  const { removeToast } = useToastContext();
 
   return (
     <div className="flex flex-col gap-4 p-8">
@@ -30,7 +32,11 @@ export const Example = () => {
       >
         Show Info Toast
       </button>
-      <ToastContainer toasts={toast.toasts} position="top-right" />
+      <ToastContainer 
+        toasts={toast.toasts} 
+        position="top-right" 
+        removeToast={removeToast}
+      />
     </div>
   );
 }; 
