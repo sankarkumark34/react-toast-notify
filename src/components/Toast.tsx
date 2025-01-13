@@ -8,8 +8,7 @@ const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Increased duration to 1.5s
-    const timer = setTimeout(() => setIsLoading(false), 1500);
+    const timer = setTimeout(() => setIsLoading(false), 3000);
     return () => clearTimeout(timer);
   }, []);
   
@@ -28,17 +27,24 @@ const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
         hover:shadow-lg ${theme.hover}
       `}
     >
-      {/* Loading bar moved to bottom with increased duration */}
+      {/* Enhanced loading bar animation */}
       {isLoading && (
-        <motion.div
-          initial={{ width: "0%" }}
-          animate={{ width: "100%" }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
-          className={`
-            absolute bottom-0 left-0 h-1
-            ${theme.loadingBar}
-          `}
-        />
+        <div className="absolute bottom-0 left-0 w-full h-1 overflow-hidden">
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: "100%" }}
+            transition={{ 
+              duration: 3,
+              ease: "easeInOut",
+              repeat: 0
+            }}
+            className={`
+              absolute inset-0 
+              ${theme.loadingBar}
+              animate-shimmer-slow
+            `}
+          />
+        </div>
       )}
 
       <span className="text-lg">{theme.icon}</span>
