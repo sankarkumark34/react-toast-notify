@@ -35,14 +35,11 @@ const toastReducer = (state: ToastState, action: ToastAction): ToastState => {
 
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(toastReducer, { toasts: [] });
-
-  const value = useMemo(() => ({
-    state,
-    addToast,
-    removeToast
-  }), [state]);
-
   const MAX_TOASTS = 5;
+
+  const removeToast = (id: string) => {
+    dispatch({ type: 'REMOVE_TOAST', payload: id });
+  };
 
   const addToast = (options: ToastOptions) => {
     const toast: Toast = {
@@ -51,17 +48,12 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
       createdAt: Date.now()
     };
 
-    dispatch({ 
-      type: 'ADD_TOAST', 
-      payload: toast 
-    });
+    dispatch({ type: 'ADD_TOAST', payload: toast });
 
-    // Remove oldest toast if limit reached
     if (state.toasts.length >= MAX_TOASTS) {
       removeToast(state.toasts[0].id);
     }
 
-    // Auto remove
     if (options.duration !== Infinity) {
       setTimeout(() => {
         removeToast(toast.id);
@@ -69,9 +61,11 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const removeToast = (id: string) => {
-    dispatch({ type: 'REMOVE_TOAST', payload: id });
-  };
+  const value = useMemo(() => ({
+    state,
+    addToast,
+    removeToast
+  }), [state]);
 
   return (
     <ToastContext.Provider value={value}>
