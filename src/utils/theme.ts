@@ -1,22 +1,22 @@
 export const toastTheme = {
   success: {
-    background: 'bg-green-500',
-    hover: 'hover:bg-green-600',
+    background: 'bg-emerald-500/90 backdrop-blur-sm',
+    hover: 'hover:bg-emerald-600/90',
     icon: '✓'
   },
   error: {
-    background: 'bg-red-500',
-    hover: 'hover:bg-red-600',
+    background: 'bg-rose-500/90 backdrop-blur-sm',
+    hover: 'hover:bg-rose-600/90',
     icon: '✕'
   },
   warning: {
-    background: 'bg-yellow-500',
-    hover: 'hover:bg-yellow-600',
+    background: 'bg-amber-500/90 backdrop-blur-sm',
+    hover: 'hover:bg-amber-600/90',
     icon: '⚠'
   },
   info: {
-    background: 'bg-blue-500',
-    hover: 'hover:bg-blue-600',
+    background: 'bg-sky-500/90 backdrop-blur-sm',
+    hover: 'hover:bg-sky-600/90',
     icon: 'ℹ'
   }
 } as const;

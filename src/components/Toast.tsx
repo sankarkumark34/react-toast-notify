@@ -1,29 +1,26 @@
 import { memo } from 'react';
 import { ToastProps } from '../types';
-
-const toastStyles = {
-  success: 'bg-green-500',
-  error: 'bg-red-500',
-  warning: 'bg-yellow-500',
-  info: 'bg-blue-500'
-} as const;
+import { toastTheme } from '../utils/theme';
 
 const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
+  const theme = toastTheme[type];
+  
   return (
     <div 
       className={`
-        ${toastStyles[type]}
+        ${theme.background}
         transform transition-all duration-300 ease-out
-        flex items-center justify-between
-        px-4 py-3 rounded-lg shadow-lg
+        flex items-center gap-3 px-4 py-3
+        rounded-lg shadow-lg border border-white/10
         text-white min-w-[300px] max-w-[400px]
         hover:scale-[1.02] hover:shadow-xl
       `}
     >
+      <span className="text-lg">{theme.icon}</span>
       <p className="text-sm font-medium">{message}</p>
       <button 
         onClick={onClose}
-        className="ml-4 hover:opacity-70 transition-opacity"
+        className="ml-auto opacity-70 hover:opacity-100 transition-opacity"
       >
         ✕
       </button>
