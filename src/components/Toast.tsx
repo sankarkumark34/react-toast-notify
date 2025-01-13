@@ -8,23 +8,30 @@ const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 100 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 100 }}
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
       className={`
         ${theme.background}
         transform transition-all duration-300 ease-out
         flex items-center gap-3 px-4 py-3
-        rounded-lg shadow-lg border border-white/10
-        text-white min-w-[300px] max-w-[400px]
-        hover:scale-[1.02] hover:shadow-xl
+        rounded-md shadow-md
+        text-gray-700 min-w-[300px] max-w-[400px]
+        hover:shadow-lg ${theme.hover}
       `}
     >
       <span className="text-lg">{theme.icon}</span>
-      <p className="text-sm font-medium">{message}</p>
+      <div className="flex flex-col flex-1">
+        <h4 className={`font-semibold text-base ${theme.titleGradient}`}>
+          {type.charAt(0).toUpperCase() + type.slice(1)}
+        </h4>
+        <p className="text-sm leading-relaxed text-gray-600 font-normal">
+          {message}
+        </p>
+      </div>
       <button 
         onClick={onClose}
-        className="ml-auto opacity-70 hover:opacity-100 transition-opacity"
+        className="ml-auto text-gray-500 hover:text-gray-700 transition-colors"
       >
         ✕
       </button>
