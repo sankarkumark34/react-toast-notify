@@ -1,5 +1,5 @@
 {
-  "name": "@ksankarkumar34/react-toast-notify",
+  "name": "react-toast-notify-ks",
   "version": "1.1.0",
   "description": "toast notification library for React",
   "main": "dist/index.js",
