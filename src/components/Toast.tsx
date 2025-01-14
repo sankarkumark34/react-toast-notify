@@ -1,11 +1,11 @@
-import { memo, useState, useEffect } from 'react';
+import { memo, useState, } from 'react';
 import { ToastProps } from '../types';
 import { toastTheme } from '../utils/theme';
 import { motion } from 'framer-motion'; 
 
 const Toast = memo(({ message, type = 'info', onClose }: ToastProps) => {
   const theme = toastTheme[type];
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading] = useState(true);
 
   return (
     <motion.div
