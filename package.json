@@ -1,6 +1,6 @@
 {
-  "name": "@ksankarkumar34/react-toast-notify",
-  "version": "1.1.0",
+  "name": "react-toast-notify-ks",
+  "version": "1.0.1",
   "description": "toast notification library for React",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,23 @@
     "react",
     "toast",
     "notification",
-    "alerts"
+    "alerts",
+    "messages",
+    "popup",
+    "notify",
+    "snackbar",
+    "react-component",
+    "react-toast",
+    "react-notification",
+    "ui-component",
+    "typescript",
+    "react-hooks",
+    "custom-toast",
+    "toast-library",
+    "react-ui",
+    "notification-system",
+    "toast-notifications",
+    "react-toast-notifications"
   ],
   "author": "Sankarkumar K",
   "license": "MIT",
@@ -28,7 +44,6 @@
     "@types/react": "^19.0.6",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
-    "typescript": "^5.7.3",
     "vite": "^6.0.7"
   },
   "dependencies": {
@@ -36,3 +51,4 @@
     "nanoid": "^5.0.9"
   }
 }
+
