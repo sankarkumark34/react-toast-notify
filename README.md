@@ -5,73 +5,126 @@ A lightweight, customizable toast notification system for React applications bui
 ## Features ✨
 
 - 🚀 Easy to integrate with React applications
-- 🎨 Customizable toast notifications
-- ⌨️ Built with TypeScript
-- 🪶 Lightweight implementation
+- 🎨 Multiple toast types (success, error, warning, info)
+- 🌈 Customizable styling and positioning
+- ⌨️ Full TypeScript support
+- 🪶 Lightweight and performant
 - 📱 Responsive design
+- ⏱️ Configurable toast duration
 
 ## Installation 📦
 
-This package is currently in development. To use it in your project:
-
-1. Clone the repository
 ```bash
-git clone [your-repository-url]
+npm install @react-toast-notify-ks
+# or
+yarn add @react-toast-notify-ks
 ```
 
-2. Install dependencies
-```bash
-npm install
-```
+## Quick Start 🚀
 
-3. Build the project
-```bash
-npm run build
-```
-
-## Usage 🚀
+### 1. Wrap Your App with ToastProvider
 
 ```tsx
-import { ToastProvider, useToast } from './path-to-library';
+import { ToastProvider } from '@react-toast-notify-ks';
 
-// Wrap your app with ToastProvider
 function App() {
   return (
     <ToastProvider>
-      <YourApp />
+      <YourMainComponent />
     </ToastProvider>
-  );
-}
-
-// Use in your components
-function Example() {
-  const toast = useToast();
-
-  return (
-    <button onClick={() => toast.show('Hello, World!')}>
-      Show Toast
-    </button>
   );
 }
 ```
 
-## Development 🛠️
+### 2. Use Toast in Components
+
+```tsx
+import { useToast } from '@react-toast-notify-ks';
+
+function ExampleComponent() {
+  const toast = useToast();
+
+  const handleShowToasts = () => {
+    // Basic usage
+    toast.success('Operation Successful!');
+    toast.error('Something went wrong');
+    
+    // Custom configuration
+    toast.warning('Warning message', {
+      duration: 5000,  // 5 seconds
+      position: 'top-right'
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={handleShowToasts}>
+        Show Toasts
+      </button>
+    </div>
+  );
+}
+```
+
+## Advanced Configuration 🛠️
+
+### Toast Types
+- `toast.success()`: Green success notification
+- `toast.error()`: Red error notification
+- `toast.warning()`: Yellow warning notification
+- `toast.info()`: Blue informational notification
+
+### Options
+- `message`: Notification text (required)
+- `duration`: Display time in milliseconds (default: 3000)
+- `position`: Toast screen position
+  - `top-right` (default)
+  - `top-left`
+  - `bottom-right`
+  - `bottom-left`
+  - `top-center`
+  - `bottom-center`
+
+## Best Practices 💡
+
+- Use appropriate toast types
+- Keep messages concise
+- Don't overwhelm users with too many notifications
+- Use for important, non-critical information
+
+## Development 🚧
 
 ```bash
+# Clone the repository
+git clone [https://github.com/sankarkumark34/react-toast-notify.git]
+
+# Install dependencies
+npm install
+
 # Start development server
 npm run dev
 
 # Build the library
 npm run build
 
-# Preview the build
-npm run preview
+# Run tests
+npm test
 ```
 
 ## Contributing 🤝
 
-Contributions are welcome! Feel free to open issues and pull requests.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License 📄
 
-MIT License
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact 📬
+
+sankar- [@LinkedIn](https://www.linkedin.com/in/sankarkumarkathirvel/)
+
+Project Link: [https://github.com/sankarkumark34/react-toast-notify.git](https://github.com/sankarkumark34/react-toast-notify.git)
